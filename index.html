@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>राष्ट्रीय पुस्तकालय</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #fff5e6;
+        }
+        
+        /* Header Styles */
+        .header {
+            background-color: #6e0000;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo {
+            width: 40px;
+            height: 40px;
+            background-color: white;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .search-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .search-box {
+            padding: 5px 10px;
+            border-radius: 15px;
+            border: none;
+            margin-right: 5px;
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        
+        .hero-box {
+            background-color: #6e0000;
+            border-radius: 5px;
+            display: flex;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            color: white;
+            padding: 20px;
+            width: 50%;
+        }
+        
+        .label {
+            background-color: #ffc107;
+            color: #000;
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+        
+        .hero-title {
+            font-size: 24px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .hero-subtitle {
+            font-size: 14px;
+            margin-bottom: 15px;
+            color: #f0f0f0;
+        }
+        
+        .hero-text {
+            font-size: 12px;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        
+        .btn-primary {
+            background-color: #ffc107;
+            color: #000;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            display: inline-block;
+            margin-right: 10px;
+            font-size: 14px;
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: white;
+            padding: 8px 15px;
+            border: 1px solid white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .hero-image {
+            width: 50%;
+            background-color: #8b4513;
+        }
+        
+        /* Info Box */
+        .info-box {
+            background-color: #fff9e6;
+            border: 1px solid #ffd699;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 30px auto;
+            max-width: 960px;
+            position: relative;
+        }
+        
+        .info-icon {
+            position: absolute;
+            top: -15px;
+            left: 30px;
+            width: 30px;
+            height: 30px;
+            background-color: #ffc107;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+        }
+        
+        .info-title {
+            color: #6e0000;
+            margin-bottom: 10px;
+            font-size: 16px;
+            text-align: center;
+        }
+        
+        .info-text {
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+        
+        .info-footer {
+            font-size: 12px;
+            color: #666;
+            border-top: 1px dashed #ddd;
+            padding-top: 10px;
+        }
+        
+        /* Book Section */
+        .books-section {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .section-title {
+            font-size: 18px;
+            color: #333;
+        }
+        
+        .view-all {
+            color: #6e0000;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .book-grid {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .book-card {
+            width: calc(25% - 15px);
+            background-color: #f5f5f5;
+            border-radius: 5px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        
+        .book-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .book-image {
+            height: 150px;
+            background-color: #ddd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .book-details {
+            padding: 10px;
+        }
+        
+        .book-category {
+            color: #6e0000;
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+        
+        .book-title {
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        
+        .book-author {
+            color: #666;
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+        
+        .date-views {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #888;
+        }
+        
+        /* Category Section */
+        .category-section {
+            background-color: #fff5e6;
+            padding: 30px 20px;
+        }
+        
+        .category-title {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+        
+        .category-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .category-box {
+            width: calc(33.33% - 14px);
+            border: 1px dashed #ffc107;
+            border-radius: 5px;
+            padding: 15px;
+        }
+        
+        .category-box-title {
+            color: #6e0000;
+            font-size: 16px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .category-list {
+            list-style: none;
+        }
+        
+        .category-list li {
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .category-list a {
+            color: #333;
+            text-decoration: none;
+        }
+        
+        .view-more {
+            display: block;
+            color: #6e0000;
+            text-align: right;
+            font-size: 12px;
+            margin-top: 10px;
+            text-decoration: none;
+        }
+        
+        /* Newsletter Section */
+        .newsletter-section {
+            background-color: #fff5e6;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        
+        .newsletter-title {
+            font-size: 18px;
+            color: #6e0000;
+            margin-bottom: 20px;
+        }
+        
+        .newsletter-text {
+            font-size: 14px;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto 20px;
+            line-height: 1.6;
+        }
+        
+        .subscribe-btn {
+            background-color: #ffc107;
+            color: #000;
+            padding: 8px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: #6e0000;
+            color: white;
+            padding: 30px 20px;
+        }
+        
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .footer-info {
+            width: 30%;
+        }
+        
+        .footer-title {
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+        
+        .footer-text {
+            font-size: 12px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .social-icon {
+            width: 30px;
+            height: 30px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .footer-links {
+            width: 20%;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 8px;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .footer-contact {
+            width: 30%;
+        }
+        
+        .address {
+            font-size: 12px;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+        
+        .contact-info {
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        /* Book highlight effect */
+        .book-highlight {
+            border: 1px solid #ffc107;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo-container">
+            <div class="logo"></div>
+            <h1>राष्ट्रीय पुस्तकालय</h1>
+        </div>
+        <nav class="nav-links">
+            <a href="#">मुख्य</a>
+            <a href="#">पुस्तकें</a>
+            <a href="#">लेखक</a>
+            <a href="#">समाचार</a>
+            <a href="#">संपर्क करें</a>
+        </nav>
+        <div class="search-container">
+            <input type="text" class="search-box" placeholder="खोजें...">
+            <button class="btn-primary">खोज</button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-box">
+            <div class="hero-content">
+                <span class="label">विशेष</span>
+                <h2 class="hero-title">कुरुक्षेत्र</h2>
+                <p class="hero-subtitle">महाभारत पौराणिक कथाओं से प्रेरित ग्रंथ</p>
+                <p class="hero-text">कुरुक्षेत्र एक महत्वपूर्ण रचना है जिसका संबंध श्री कृष्ण और अर्जुन का संवाद से है। यह ग्रंथ जीवन के मूल सिद्धांतों और धर्म की विवेचना करता है।</p>
+                <button class="btn-primary">आगे पढ़ें →</button>
+                <button class="btn-secondary">अधिक जानकारी →</button>
+            </div>
+            <div class="hero-image"></div>
+        </div>
+    </section>
+
+    <!-- Info Box -->
+    <div class="info-box">
+        <div class="info-icon">!</div>
+        <h3 class="info-title">पठन सूचना</h3>
+        <p class="info-text">"यह ग्रंथ न केवल ही काव्य की दृष्टि से बल्कि अध्यात्म का भी है। यह देश में ही नहीं विदेश के बुद्धिजीवियों के बीच भी चर्चा का विषय रहा है। ग्रंथ के कई भाषाओं में अनुवाद हुए हैं जो देश-विदेश दोनों जगह पर समान रूप से पढ़े जाते हैं।"</p>
+        <div class="info-footer">
+            These books are available in various formats (physical, e-book, audiobook), readers are encouraged to explore them according to their preference [Samachar Jagat, Dainik Bhaskar, Hindustan Times, and Rajasthan Patrika, see more recommendations, formats and information with links]
+        </div>
+    </div>
+
+    <!-- Books Section -->
+    <section class="books-section">
+        <div class="section-header">
+            <h3 class="section-title">नई पुस्तकें</h3>
+            <a href="#" class="view-all">सभी देखें →</a>
+        </div>
+        <div class="book-grid">
+            <div class="book-card">
+                <div class="book-image">+</div>
+                <div class="book-details">
+                    <p class="book-category">कविता</p>
+                    <h4 class="book-title">अग्निपथ</h4>
+                    <p class="book-author">हरिवंश राय बच्चन</p>
+                    <div class="date-views">
+                        <span>जुलाई '23</span>
+                        <span>650+</span>
+                    </div>
+                </div>
+            </div>
+            <div class="book-card">
+                <div class="book-image">+</div>
+                <div class="book-details">
+                    <p class="book-category">उपन्यास</p>
+                    <h4 class="book-title">गबन</h4>
+                    <p class="book-author">प्रेम चंद</p>
+                    <div class="date-views">
+                        <span>अगस्त '23</span>
+                        <span>800+</span>
+                    </div>
+                </div>
+            </div>
+            <div class="book-card book-highlight">
+                <div class="book-image">+</div>
+                <div class="book-details">
+                    <p class="book-category">निबंध</p>
+                    <h4 class="book-title">जब देना तो देना आप कुछ बताओ, न देना हो तो बहाना बताओ, न दुनिया को बताओ</h4>
+                    <p class="book-author">सुरेश दलवी</p>
+                    <div class="date-views">
+                        <span>सितंबर '23</span>
+                        <span>450+</span>
+                    </div>
+                </div>
+            </div>
+            <div class="book-card">
+                <div class="book-image">+</div>
+                <div class="book-details">
+                    <p class="book-category">कहानियां</p>
+                    <h4 class="book-title">आखिरी वादा</h4>
+                    <p class="book-author">रवीन्द्र कालिया</p>
+                    <div class="date-views">
+                        <span>अक्टूबर '23</span>
+                        <span>520+</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="category-section">
+        <h3 class="category-title">पुस्तकें श्रेणियाँ देखें</h3>
+        <div class="category-container">
+            <div class="category-box">
+                <h4 class="category-box-title">काव्य के प्रकार</h4>
+                <ul class="category-list">
+                    <li><a href="#">कविताएँ</a></li>
+                    <li><a href="#">ग़ज़लें</a></li>
+                    <li><a href="#">दोहे</a></li>
+                    <li><a href="#">छंद</a></li>
+                    <li><a href="#">हाइकु</a></li>
+                </ul>
+                <a href="#" class="view-more">और देखें →</a>
+            </div>
+            <div class="category-box">
+                <h4 class="category-box-title">गद्य के प्रकार</h4>
+                <ul class="category-list">
+                    <li><a href="#">उपन्यास</a></li>
+                    <li><a href="#">कहानी संग्रह</a></li>
+                    <li><a href="#">आलोचनात्मक लेख</a></li>
+                    <li><a href="#">निबंध</a></li>
+                    <li><a href="#">जीवनी एवं आत्मकथा</a></li>
+                </ul>
+                <a href="#" class="view-more">और देखें →</a>
+            </div>
+            <div class="category-box">
+                <h4 class="category-box-title">अन्य विषय</h4>
+                <ul class="category-list">
+                    <li><a href="#">जीवनीपरक उपन्यास</a></li>
+                    <li><a href="#">ऐतिहासिक उपन्यास</a></li>
+                    <li><a href="#">पर्यावरण कथाएँ</a></li>
+                    <li><a href="#">बाल साहित्य</a></li>
+                </ul>
+                <a href="#" class="view-more">और देखें →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <h3 class="newsletter-title">साहित्य समाचारों में बने रहें</h3>
+        <p class="newsletter-text">राष्ट्रीय पुस्तकालय की ओर से आपको नियमित रूप से नई किताबों की जानकारी और आने वाले कार्यक्रमों के बारे में अपडेट प्राप्त करें। हमारे न्यूज़लेटर के लिए आज ही सदस्यता लें और साहित्य की दुनिया से जुड़े रहें। आपका मेल आईडी गोपनीय रखा जाएगा।</p>
+        <button class="subscribe-btn">सदस्यता लें</button>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-info">
+                <h3 class="footer-title">राष्ट्रीय पुस्तकालय</h3>
+                <p class="footer-text">भारत सरकार के अधीन एक राष्ट्रीय पुस्तकालय संस्थान, जिसका उद्देश्य है देश की साहित्यिक विरासत को संजोना।</p>
+                <div class="social-icons">
+                    <div class="social-icon">F</div>
+                    <div class="social-icon">T</div>
+                    <div class="social-icon">I</div>
+                    <div class="social-icon">Y</div>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h3 class="footer-title">त्वरित लिंक</h3>
+                <ul>
+                    <li><a href="#">होम</a></li>
+                    <li><a href="#">पुस्तकें</a></li>
+                    <li><a href="#">लेखक</a></li>
+                    <li><a href="#">समाचार</a></li>
+                    <li><a href="#">संपर्क करें</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h3 class="footer-title">संपर्क करें</h3>
+                <p class="address">राष्ट्रीय पुस्तकालय, बेलवेडियर मार्ग, नई दिल्ली - 110001</p>
+                <p class="contact-info">फोन: +91-11-23456789<br>
+                ईमेल: info@rashtriyapustakalaya.gov.in</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
